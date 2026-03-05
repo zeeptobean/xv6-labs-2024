@@ -39,3 +39,4 @@ entry("uptime");
 
 # my own syscall
 entry("sixseven");
+entry("random");

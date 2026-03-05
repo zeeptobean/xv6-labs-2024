@@ -25,6 +25,7 @@ int uptime(void);
 
 //my own syscall
 int sixseven(void);
+uint64 random(uint64*);
 
 // ulib.c
 int stat(const char*, struct stat*);

@@ -104,6 +104,7 @@ extern uint64 sys_close(void);
 
 //My own syscall
 extern uint64 sys_sixseven(void);
+extern uint64 sys_random(void);
 
 // An array mapping syscall numbers from syscall.h
 // to the function that handles the system call.
@@ -131,6 +132,7 @@ static uint64 (*syscalls[])(void) = {
 [SYS_close]   sys_close,
 //My own syscall
 [SYS_sixseven] sys_sixseven,
+[SYS_random] sys_random,
 };
 
 void

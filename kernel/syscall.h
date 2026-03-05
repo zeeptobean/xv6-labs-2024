@@ -23,3 +23,4 @@
 
 //My own syscall start here
 #define SYS_sixseven 67
+#define SYS_random 66

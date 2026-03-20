@@ -158,8 +158,8 @@ static const char* syscall_name[] = {
 [SYS_link]    "link",
 [SYS_mkdir]   "mkdir",
 [SYS_close]   "close",
-[SYS_sixseven] sys_sixseven,
-[SYS_random] sys_random,
+[SYS_sixseven] "sixseven",
+[SYS_random] "random",
 [SYS_trace]   "trace",
 };
 
@@ -171,8 +171,6 @@ syscall(void)
 
   num = p->trapframe->a7;
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
-    // Save first param
-    uint64 first_arg = p->trapframe->a0;
     // Use num to lookup the system call function for num, call it,
     // and store its return value in p->trapframe->a0
     p->trapframe->a0 = syscalls[num]();

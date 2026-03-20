@@ -20,7 +20,6 @@
 #define SYS_link   19
 #define SYS_mkdir  20
 #define SYS_close  21
-
-//My own syscall start here
-#define SYS_sixseven 67
-#define SYS_random 66
+#define SYS_trace  22
+#define SYS_random 26
+#define SYS_sixseven 27

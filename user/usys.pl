@@ -36,7 +36,6 @@ entry("getpid");
 entry("sbrk");
 entry("sleep");
 entry("uptime");
-
-# my own syscall
 entry("sixseven");
 entry("random");
+entry("trace");

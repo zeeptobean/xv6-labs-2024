@@ -22,6 +22,7 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
+int trace(uint64);
 
 //my own syscall
 int sixseven(void);
@@ -39,6 +40,7 @@ char* gets(char*, int max);
 uint strlen(const char*);
 void* memset(void*, int, uint);
 int atoi(const char*);
+long atol(const char*);
 int memcmp(const void *, const void *, uint);
 void *memcpy(void *, const void *, uint);
 

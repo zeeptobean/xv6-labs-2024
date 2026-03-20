@@ -98,3 +98,8 @@ sys_sixseven(void)
   return 67;
 }
 
+sys_trace(void)
+{
+  argaddr(0, &myproc()->tracemask);
+  return 0;
+}

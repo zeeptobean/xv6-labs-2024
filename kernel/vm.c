@@ -1,3 +1,5 @@
+#define LAB_PGTBL
+
 #include "param.h"
 #include "types.h"
 #include "memlayout.h"
@@ -448,4 +450,29 @@ copyinstr(pagetable_t pagetable, char *dst, uint64 srcva, uint64 max)
   } else {
     return -1;
   }
+}
+
+void
+vmprint_impl(pagetable_t pgtbl, int level)
+{
+  for(int i = 0; i < 512; i++){
+    pte_t pte = pgtbl[i];
+    if((pte & PTE_V)){
+      uint64 child = PTE2PA(pte);
+      for(int j=0; j < level; j++) {
+        printf(" ..");
+      }
+      printf("%d: pte %p pa %p\n", i, (void*) pte, (void*) child);
+      if((pte & PTE_V) && !PTE_LEAF(pte)) {
+        vmprint_impl((pagetable_t)child, level+1);
+      }
+    }
+  }
+}
+
+void
+vmprint(pagetable_t pgtbl)
+{
+  printf("page table %p\n", pgtbl);
+  vmprint_impl(pgtbl, 1);
 }

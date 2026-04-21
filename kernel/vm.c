@@ -476,3 +476,25 @@ vmprint(pagetable_t pgtbl)
   printf("page table %p\n", pgtbl);
   vmprint_impl(pgtbl, 1);
 }
+
+// Check which page in a range has been accessed.
+// If accessed (with A bit set), record and clear it
+int
+pgaccess(pagetable_t user_pgtbl, uint64 base_addr, int pg_cnt, uint64 *output_bitmask)
+{
+  uint64 bitmask = 0;
+  for(int i = 0; i < pg_cnt; i++) {
+    uint64 va = base_addr + i * PGSIZE;
+    pte_t *pte = walk(user_pgtbl, va, 0);
+    // check: not mapped, not valid, or not user-accessible
+    if(pte == 0 || (*pte & PTE_V) == 0 || (*pte & PTE_U) == 0) {
+      return -1;
+    }
+    if(*pte & PTE_A) {
+      bitmask |= (1ULL << i);
+      *pte &= ~PTE_A;
+    }
+  }
+  *output_bitmask = bitmask;
+  return 0;
+}

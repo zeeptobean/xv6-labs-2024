@@ -196,7 +196,8 @@ UPROGS=\
 	$U/_zombie\
 	$U/_sleep\
 	$U/_trace\
-	$U/_sysinfotest
+	$U/_sysinfotest\
+	$U/_pgaccesstest
 
 
 

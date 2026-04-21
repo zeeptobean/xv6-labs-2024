@@ -132,3 +132,10 @@ sys_pgaccess(void)
   if(copyout(myproc()->pagetable, output_bitmask_addr, (char *)&bitmask, sizeof(bitmask)) < 0) return -1;
   return 0;
 }
+
+uint64
+sys_vmprint(void)
+{
+  vmprint(myproc()->pagetable);
+  return 0;
+}
